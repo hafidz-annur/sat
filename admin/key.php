@@ -745,11 +745,11 @@
 
                     if(isset($_POST['r'.$i])){
                         $rkey = $_POST['r'.$i];
-                        $rsql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$ridcategory','$ridmain','$rtopics','$rsubtopics','$ranalysis','$rdifficulty','$rkey')";        
+                        $rsql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$ridcategory','$ridmain','$rtopics','$rsubtopics','$ranalysis','$rdifficulty','$rkey')";        
                     }
                      else {
                         $rkey = "-";
-                        $rsql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$ridcategory','$ridmain','$rtopics','$rsubtopics','$ranalysis','$rdifficulty','$rkey')";
+                        $rsql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$ridcategory','$ridmain','$rtopics','$rsubtopics','$ranalysis','$rdifficulty','$rkey')";
                     }
                     $rinsert = $conn->query($rsql);
                 }
@@ -764,11 +764,11 @@
 
                     if(isset($_POST['w'.$i])){
                         $wkey = $_POST['w'.$i];
-                        $wsql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$widcategory','$widmain','$wtopics','$wsubtopics','$wanalysis','$wdifficulty','$wkey')";        
+                        $wsql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$widcategory','$widmain','$wtopics','$wsubtopics','$wanalysis','$wdifficulty','$wkey')";        
                     }
                      else {
                         $wkey = "-";
-                        $wsql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$widcategory','$widmain','$wtopics','$wsubtopics','$wanalysis','$wdifficulty','$wkey')"; 
+                        $wsql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$widcategory','$widmain','$wtopics','$wsubtopics','$wanalysis','$wdifficulty','$wkey')"; 
                     }
                     $winsert = $conn->query($wsql);
                 }
@@ -790,7 +790,7 @@
                         $nkey = "-";
                         
                     }
-                    $nsql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$nidcategory','$nidmain','$ntopics','$nsubtopics','$nanalysis','$ndifficulty','$nkey')"; 
+                    $nsql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$nidcategory','$nidmain','$ntopics','$nsubtopics','$nanalysis','$ndifficulty','$nkey')"; 
                     $ninsert = $conn->query($nsql);
                 }
                 //essay
@@ -828,7 +828,7 @@
                             $nkey = $oa.$ob.$oc.$od;
                         }
                     }
-                    $nsql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$nidcategory','$nidmain','$ntopics','$nsubtopics','$nanalysis','$ndifficulty','$nkey')"; 
+                    $nsql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$nidcategory','$nidmain','$ntopics','$nsubtopics','$nanalysis','$ndifficulty','$nkey')"; 
                     $ninsert = $conn->query($nsql);
                 }
                         
@@ -850,7 +850,7 @@
                         $mkey = "-";
                         
                     }
-                    $msql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$midcategory','$midmain','$mtopics','$msubtopics','$manalysis','$mdifficulty','$mkey')"; 
+                    $msql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$midcategory','$midmain','$mtopics','$msubtopics','$manalysis','$mdifficulty','$mkey')"; 
                     $minsert = $conn->query($msql);
                 }
                 //essay
@@ -888,7 +888,7 @@
                             $mkey = $oe.$of.$og.$oh;
                         }
                     }
-                    $msql = "INSERT INTO tbl_soal_backup (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$midcategory','$midmain','$mtopics','$msubtopics','$manalysis','$mdifficulty','$mkey')"; 
+                    $msql = "INSERT INTO tbl_soal (id_typesoal,id_category,ID_Main,id_maintopic,id_sub_topic,id_anl,id_diff,Answer_Key) VALUES ('$quest_id','$midcategory','$midmain','$mtopics','$msubtopics','$manalysis','$mdifficulty','$mkey')"; 
                     $minsert = $conn->query($msql);
                 }
 
