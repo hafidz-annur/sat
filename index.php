@@ -81,7 +81,7 @@
             echo "<script type='text/javascript'>alert('You will be redirect to test-page!')</script>";
             echo "<script>document.location='student/index.php';</script>";
         }
-        else if($mail = "a@dmin" && $password = "a@dmin")
+        elseif ($mail == "a@dmin" && $password == "a@dmin")
         {
             echo "<script type='text/javascript'>alert('Welcome Admin!')</script>";
             echo "<script>document.location='admin/index.php';</script>";
@@ -91,22 +91,6 @@
             echo "<script type='text/javascript'>alert('Your password doesn't match!')</script>";
             echo "<script>document.location='./index.php';</script>";
         }
-        // $sql = "SELECT * FROM tbl_student WHERE st_mail='$mail' AND st_pass='$passhash'";
-        // $sql1 = $conn->query($sql);
-        // if(mysqli_num_rows($sql1) == 1)
-        // {
-        //     echo $passhash;
-        //     echo "OK";
-        //     // echo "<script type='text/javascript'>alert('Your password doesn't match!')</script>";
-        //     // echo "<script>document.location='./index.php';</script>";
-        // }
-        // else
-        // {
-        //     echo $test."<br>";
-        //     echo $passhash."\n";
-        //     echo "G";
-        //     // echo "<script type='text/javascript'>alert('Your password doesn't match!')</script>";
-        // }
     }
 ?>
 
