@@ -134,7 +134,7 @@ include("functions.php");
                 
                     if ($conn->query($post) === TRUE) {
                         $status = "New record created successfully";
-                        echo "<script>document.location='../answer/question_insert.php';</script>";
+                        echo "<script>document.location='./question_insert.php';</script>";
                     } else {
                         $status = "Error: " . $sql . "<br>" . $conn->error;
                     }

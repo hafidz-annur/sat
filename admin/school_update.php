@@ -90,7 +90,7 @@ $name = echoarray('school','tbl_school','id_school',$id);
                 
                     if ($conn->query($post) === TRUE) {
                         $status = "New record created successfully";
-                        echo "<script>document.location='../answer/school_insert.php';</script>";
+                        echo "<script>document.location='./school_insert.php';</script>";
                     } else {
                         $status = "Error: <br>" . $conn->error;
                     }

@@ -69,19 +69,25 @@
                 <td>
                 <div class="form-group pl-5 pr-5">
                     <label for="inputname">First Name</label>
-                    <input type="text" class="form-control" name="Studentname" placeholder="Input your first name " required>
+                    <input type="text" class="form-control" name="Studentname" placeholder="fname"  required>
                 </div>
                 </td>
                 <td>
                 <div class="form-group pl-5 pr-5">
                     <label for="inputname">Last Name</label>
-                    <input type="text" class="form-control" name="lastname" placeholder="Last name" required>
+                    <input type="text" class="form-control" name="lastname" placeholder="lname"  required>
+                </div>
+                </td>
+                <td>
+                <div class="form-group pl-5 pr-5">
+                    <label for="inputname">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="mail" required>
                 </div>
                 </td>
                 <td>
                     <div class="form-group pl-5 pr-5">
                     <label for="inputgrade "> Grade</label>
-                    <input type="number" class="form-control" name="gradestudent" placeholder="input your grade.." required max="12" maxlength="2">
+                    <input type="number" class="form-control" name="gradestudent" placeholder="max=12" required max="12" maxlength="2">
                 </div>
                 </td>
                 <td>
@@ -143,8 +149,8 @@
                         <td><?=$array["st_grade"] ?></td>
                         <td><?=$schoolname ?></td>
                         <td>
-                            <?="<a href=./Student_delete.php?id_student=".urlencode($id).">Delete</a> |" ; ?>
-                            <?="<a href=./Student_update.php?id_student=".urlencode($id).">Update</a>" ; ?>
+                            <?="<a href=./student_delete.php?id_student=".urlencode($id).">Delete</a> |" ; ?>
+                            <?="<a href=./student_update.php?id_student=".urlencode($id).">Update</a>" ; ?>
                         </td>
                     </tr>
                     <?php $no++;
@@ -157,15 +163,18 @@
         $newid = Newid('id_student','tbl_student','Stu');                
             if(isset($_POST['submit']))
         {
+                $mail = $_POST['email'];
                 $name = $_POST['Studentname'];
                 $lname = $_POST['lastname'];
                 $grade = $_POST['gradestudent'];
                 $school = $_POST['schoolname'];
-                $post = "INSERT INTO tbl_student VALUES ('$newid','$name','$lname','$grade','$school')";
+                $passwordbefore = "sat.all-in";
+                $pass = password_hash($passwordbefore, PASSWORD_DEFAULT);
+                $post = "INSERT INTO tbl_student VALUES ('$newid','$mail','$name','$lname','$grade','$school','$pass')";
                 
                     if ($conn->query($post) === TRUE) {
                         $status = "New record created successfully";
-                        echo "<script>document.location='../answer/Student_insert.php';</script>";
+                        echo "<script>document.location='./student_insert.php';</script>";
                     } else {
                         $status = "Error: " . $sql . "<br>" . $conn->error;
                     }

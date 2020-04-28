@@ -178,8 +178,8 @@ include("functions.php");?>
             }
                 if ($x = 1) {
                         $status = "<script type='text/javascript'>alert('New record created successfully!')</script>";
-                        $back = "<script>document.location='../answer/rsi_insert2.php';</script>"; 
-                        print_r(unserialize($raws_isi)); 
+                        $back = "<script>document.location='./rsi_insert.php';</script>"; 
+                        
                     } else {
                         $status = "<script type='text/javascript'>alert('.$conn->error.')</script>";
                     }

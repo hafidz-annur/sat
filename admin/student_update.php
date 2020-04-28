@@ -125,7 +125,7 @@ while ($sql3 = mysqli_fetch_assoc($sql2))
                 
                     if ($conn->query($post) === TRUE) {
                         $status = "New record created successfully";
-                        echo "<script>document.location='../answer/student_insert.php';</script>";
+                        echo "<script>document.location='./student_insert.php';</script>";
                     } else {
                         $status = "Error: <br>" . $conn->error;
                     }

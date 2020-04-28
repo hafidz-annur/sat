@@ -115,7 +115,7 @@ $type = echoarray('type_soal','tbl_typesoal','id_typesoal',$id);
                 
                     if ($conn->query($post) === TRUE) {
                         $status = "New record created successfully";
-                        echo "<script>document.location='../answer/question_insert.php';</script>";
+                        echo "<script>document.location='./question_insert.php';</script>";
                     } else {
                         $status = "Error: <br>" . $conn->error;
                     }
