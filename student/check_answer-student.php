@@ -2,6 +2,11 @@
 <?php include("connect.php"); 
 include("functions.php");
 session_start();
+if (empty($_SESSION['mail']))
+{
+    echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
+    echo "<script>document.location='../';</script>";
+}
 $idstudent  = $_SESSION['st_id'];
 $stname = $_SESSION['st_name'];
 $quest_id = $_SESSION['tipetest'];

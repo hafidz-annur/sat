@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (empty($_SESSION['mail']))
+{
+    echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
+    echo "<script>document.location='../';</script>";
+}
 $servername = "localhost";
 $username = "root";
 $password = "";

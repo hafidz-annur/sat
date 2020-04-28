@@ -506,7 +506,7 @@ $_SESSION['st_name'] = $name;
             else
             {
                 echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
-                echo "<script>document.location='./sign-in.php';</script>";
+                echo "<script>document.location='../';</script>";
             }
 
                 ?>
