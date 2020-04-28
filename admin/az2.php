@@ -2,6 +2,11 @@
 <?php include("connect.php"); 
 include("functions.php");
 session_start();
+if (empty($_SESSION['mail']))
+{
+    echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
+    echo "<script>document.location='../';</script>";
+}
 $id_result = $_GET['id_result'];
 $sql = "SELECT DISTINCT id_stquest FROM tbl_result r WHERE r.id_result='$id_result'";
 $x = $conn->query($sql);

@@ -6,6 +6,12 @@ $name = echoarray('nama_soal','tbl_typesoal','id_typesoal',$id);
 $newname = substr($name,4);
 $type = echoarray('type_soal','tbl_typesoal','id_typesoal',$id);
 // error_reporting(0);
+session_start();
+if (empty($_SESSION['mail']))
+{
+    echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
+    echo "<script>document.location='../';</script>";
+}
 ?>
 <head>
    

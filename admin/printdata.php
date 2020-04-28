@@ -3,7 +3,11 @@
 include("connect.php"); 
 include("functions.php");
 session_start();
-
+if (empty($_SESSION['mail']))
+{
+    echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
+    echo "<script>document.location='../';</script>";
+}
 $id_result = $_SESSION['id_result'];
 $sql = "SELECT st.st_name as nama_siswa, st_grade as grade, q.nama_soal as jenis_soal, stq.id_stquest as id_soal, sc.school as nama_sekolah
 FROM tbl_result r, tbl_stquest stq, tbl_student st, tbl_typesoal q, tbl_school sc

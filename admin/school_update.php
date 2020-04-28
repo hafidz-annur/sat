@@ -3,6 +3,12 @@
 include("functions.php");
 $id = $_GET['id_school'];
 $name = echoarray('school','tbl_school','id_school',$id);
+session_start();
+if (empty($_SESSION['mail']))
+{
+    echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
+    echo "<script>document.location='../';</script>";
+}
 // error_reporting(0);
 ?>
 <head>
