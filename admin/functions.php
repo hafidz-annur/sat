@@ -41,7 +41,7 @@ function Newido($column,$table,$char)
             $idbaru = (int) substr($newkode, 4, 4);
             $idbaru++;
             $chartambahan = "$char";
-            $kodebaru = $chartambahan . sprintf("%03s",$idbaru);
+            $kodebaru = $chartambahan . sprintf("%04s",$idbaru);
             return $kodebaru;
         }
 function echoarray($column,$table,$columnid,$nilaiid)

@@ -127,15 +127,21 @@ if (empty($_SESSION['mail']))
         $newid = Newido('id_school','tbl_school','SCH-');                
             if(isset($_POST['submit']))
         {
-                $newquesttype = $_POST['schoolname'];
-
-                $post = "INSERT INTO tbl_school VALUES ('$newid','$newquesttype')";
+                $newschool = $_POST['schoolname'];
+                $oldschool = "SELECT * FROM tbl_school WHERE school='$newschool'";
+                $rowschool = $conn->query($oldschool);
+                
+                if (mysqli_num_rows($rowschool) != 0){
+                    echo "<script type='text/javascript'>alert('School name already exist, please submit different name')</script>";
+                    exit;
+                }
+                $post = "INSERT INTO tbl_school VALUES ('$newid','$newschool')";
                 
                     if ($conn->query($post) === TRUE) {
                         $status = "New record created successfully";
                         echo "<script>document.location='./school_insert.php';</script>";
                     } else {
-                        $status = "Error: " . $sql . "<br>" . $conn->error;
+                        $status = "Error: "."<br>" . $conn->error;
                     }
                 echo $status."<br>";
                 

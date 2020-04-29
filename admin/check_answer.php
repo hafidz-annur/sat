@@ -297,7 +297,7 @@ if (empty($_SESSION['mail']))
                                     </tr>
                                     <?php
                                                         } 
-                                                        elseif ($no>=117){
+                                                        elseif ($no>=117 && $no <155){
                                                             $cno = $no-116;
                                                     ?>
                                     <tr>

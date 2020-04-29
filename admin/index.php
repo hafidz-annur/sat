@@ -22,10 +22,8 @@ if (isset($_SESSION['mail']))
         font-family: 'Roboto', sans-serif;
     }
     table tr td {
-    padding:11px;
     text-align:center;
     height: 5vh;
-    top: -5px;
     vertical-align: middle;
   }
     input[type='radio']:after {
@@ -411,7 +409,7 @@ if (isset($_SESSION['mail']))
             $stquestid = newid('id_stquest','tbl_stquest','Stp');
             $st_id = newid('id_student','tbl_student','Stu');
             $quest_id = $_POST['tipetest'];
-            $postseql = "INSERT INTO tbl_stquest VALUES ('$stquestid','$st_id','$quest_id', now(), now()";
+            $postseql = "INSERT INTO tbl_stquest (id_stquest, id_student, id_typesoal, date_insert, date_updated) VALUES ('$stquestid','$st_id','$quest_id', now(), now())";
             $conn->query($postseql);
                 $school_id = $_POST['schoolname'];
                 $namestudent = $_POST['namestudent'];
