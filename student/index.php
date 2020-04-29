@@ -46,13 +46,13 @@ $_SESSION['st_name'] = $name;
     padding:11px;
     text-align:center;
     height: 5vh;
+    top: -5px;
     vertical-align: middle;
   }
     input[type='radio']:after {
         width: 25px;
         height: 25px;
         border-radius: 25px;
-        top: -5px;
         left: -5px;
         position: relative;
         background-color: #d1d3d1;
@@ -65,7 +65,6 @@ $_SESSION['st_name'] = $name;
         width: 25px;
         height: 25px;
         border-radius: 25px;
-        top: -5px;
         left: -5px;
         position: relative;
         background-color: rgb(23, 162, 183, 1);

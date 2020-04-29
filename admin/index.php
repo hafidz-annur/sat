@@ -32,7 +32,6 @@ if (isset($_SESSION['mail']))
         width: 25px;
         height: 25px;
         border-radius: 25px;
-        
         left: -5px;
         position: relative;
         background-color: #d1d3d1;
@@ -45,7 +44,6 @@ if (isset($_SESSION['mail']))
         width: 25px;
         height: 25px;
         border-radius: 25px;
-        top: -5px;
         left: -5px;
         position: relative;
         background-color: rgb(23, 162, 183, 1);
