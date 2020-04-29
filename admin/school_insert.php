@@ -60,6 +60,11 @@ if (empty($_SESSION['mail']))
       <a class="nav-link" href="key.php">Key</a>
     </li>
   </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="../sign-out.php">Logout</a>
+    </li>
+  </ul>
 </nav>
 <center>
             <h2 class=" text-white m-0" style="background: #4CAF50"> School Insert</h2>
@@ -119,7 +124,7 @@ if (empty($_SESSION['mail']))
                 </form>
                 </center>
                 <?php
-        $newid = Newid('id_school','tbl_school','Sch');                
+        $newid = Newido('id_school','tbl_school','SCH-');                
             if(isset($_POST['submit']))
         {
                 $newquesttype = $_POST['schoolname'];

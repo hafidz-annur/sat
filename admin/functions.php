@@ -1,10 +1,5 @@
 <?php 
-session_start();
-if (empty($_SESSION['mail']))
-{
-    echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
-    echo "<script>document.location='../';</script>";
-}
+
 function successinsert($x)
 {
     include("connect.php");
@@ -31,6 +26,19 @@ function Newid($column,$table,$char)
             $array = mysqli_fetch_array($sql);
             $newkode = $array['maxx'];
             $idbaru = (int) substr($newkode, 3, 3);
+            $idbaru++;
+            $chartambahan = "$char";
+            $kodebaru = $chartambahan . sprintf("%03s",$idbaru);
+            return $kodebaru;
+        }
+function Newido($column,$table,$char)
+        {
+            include("connect.php");
+            $query = "SELECT max($column) as maxx FROM $table";
+            $sql = $conn->query($query);
+            $array = mysqli_fetch_array($sql);
+            $newkode = $array['maxx'];
+            $idbaru = (int) substr($newkode, 4, 4);
             $idbaru++;
             $chartambahan = "$char";
             $kodebaru = $chartambahan . sprintf("%03s",$idbaru);

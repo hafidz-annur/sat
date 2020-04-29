@@ -70,6 +70,11 @@ while ($sql3 = mysqli_fetch_assoc($sql2))
       <a class="nav-link" href="key.php">Key</a>
     </li>
   </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="../sign-out.php">Logout</a>
+    </li>
+  </ul>
 </nav>
 <center>
             <h2 class=" text-white m-0" style="background: #4CAF50"> Student Update</h2>

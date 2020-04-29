@@ -56,6 +56,11 @@ if (empty($_SESSION['mail']))
       <a class="nav-link" href="key.php">Key</a>
     </li>
   </ul>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="../sign-out.php">Logout</a>
+    </li>
+  </ul>
 </nav>
     <center>
     <h2 class=" text-white m-0" style="background: #ff9966"> SAT Input Key</h2>

@@ -25,13 +25,14 @@ if (isset($_SESSION['mail']))
     padding:11px;
     text-align:center;
     height: 5vh;
+    top: -5px;
     vertical-align: middle;
   }
     input[type='radio']:after {
         width: 25px;
         height: 25px;
         border-radius: 25px;
-        top: -5px;
+        
         left: -5px;
         position: relative;
         background-color: #d1d3d1;
@@ -92,14 +93,14 @@ if (isset($_SESSION['mail']))
 <center>
             <h2 class=" text-white m-0" style="background: rgb(23, 162, 183, 1)"> SAT Diagnostic Test</h2>
     </center>
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <form action="" method="post" onsubmit="return confirm('Do you really want to submit the form?');">
             <center>
                 <table name="student">
                     <tr class="text-center">
-                        <td>
-                            <div class="form-group pr-5 pl-5">
-                                <label for="inputname"> Test Name</label>
+                        <td width = "20%">
+                            <div class="form-group pr-5 pl-0">
+                                <label for="test"> Test Name</label>
                                 <select class="form-control" name="tipetest" required>
                                     <?php 
                         $x = "SELECT * FROM tbl_typesoal ORDER BY id_typesoal DESC";
@@ -115,8 +116,8 @@ if (isset($_SESSION['mail']))
                             </div>
                         </td>
                         <td>
-                            <div class="form-group pr-5 pl-5">
-                                <label for="inputname"> School Name</label>
+                            <div class="form-group pr-5 pl-3">
+                                <label for="school"> School Name</label>
                                 <select class="form-control" name="schoolname" required>
                                     <?php 
                         $x = "SELECT * FROM tbl_school ORDER BY id_school DESC";
@@ -132,15 +133,22 @@ if (isset($_SESSION['mail']))
                             </div>
                         </td>
                         <td>
-                            <div class="form-group pl-5 pr-5 ">
-                                <label for="inputname"> Full Name</label>
-                                <input type="text" class="form-control" name="namestudent" placeholder="Christina"
+                            <div class="form-group ">
+                                <label for="name"> First Name</label>
+                                <input type="text" class="form-control" name="namestudent" placeholder="Required"
                                     required>
                             </div>
                         </td>
                         <td>
+                            <div class="form-group">
+                                <label for="lastname"> Last Name</label>
+                                <input type="text" class="form-control" name="lname" placeholder="Optional"
+                                    required>
+                            </div>
+                        </td>
+                        <td width ="15%">
                             <div class="form-group pl-5 pr-5">
-                                <label for="inputname "> Grade</label>
+                                <label for="grade "> Grade</label>
                                 <input type="number" class="form-control" name="gradestudent" placeholder="10" required
                                     max="12" maxlength="2">
                             </div>
@@ -152,6 +160,8 @@ if (isset($_SESSION['mail']))
                     </tr>
                 </table>
             </center>
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <div class="card shadow mb-5">
@@ -388,14 +398,18 @@ if (isset($_SESSION['mail']))
             </div>
         </form>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 center">
+
                 <?php
                 
                 if(isset($_POST['submit']))
         {
-            
+            if(empty($_POST['lname']))
+                {
+                    $lastname = "-";
+                }
+                else{
+                    $lastname = $_POST['lname'];
+                }
             $stquestid = newid('id_stquest','tbl_stquest','Stp');
             $st_id = newid('id_student','tbl_student','Stu');
             $quest_id = $_POST['tipetest'];
@@ -404,7 +418,10 @@ if (isset($_SESSION['mail']))
                 $school_id = $_POST['schoolname'];
                 $namestudent = $_POST['namestudent'];
                 $gradestudent = $_POST['gradestudent'];
-                $postsiswa = "INSERT INTO tbl_student VALUES ('$st_id','$namestudent','$gradestudent','$school_id')";
+                $passwordbefore = "sat.all-in";
+                $maildefault = $st_id."@all-inedu.com";
+                $pass = password_hash($passwordbefore, PASSWORD_DEFAULT);
+                $postsiswa = "INSERT INTO tbl_student VALUES ('$st_id','$maildefault','$namestudent','$lastname','$gradestudent','$school_id','$pass')";
                 $conn->query($postsiswa);
                 
                 for($i=0;$i<52;$i++){
@@ -526,12 +543,8 @@ if (isset($_SESSION['mail']))
              else
              {
                  echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
-                 echo "<script>document.location='./sign-in.php';</script>";
+                 echo "<script>document.location='../';</script>";
              } ?>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 </html>
