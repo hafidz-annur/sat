@@ -279,44 +279,51 @@ $datadiffi = implode(", ",$arrdiffincorrvalue);
 //answerandtype
 //reading
 $sqlreading = "SELECT s.soal_id as Nomor, a.answer as 'Your Answer', s.Answer_Key as 'Correct Answer', st.code as Subtopic, t.code as Topic , c.checking as Correction, s.id_diff as difficulty
-FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t
+FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t,  tbl_stquest f
 WHERE a.id_stquest='$idsoal'
 AND c.id_autoans = a.id_autoans
 AND a.id_answer = s.ID_Main
 AND s.id_sub_topic = st.id_sub_topic
 AND s.id_maintopic = t.id_topic
+AND a.id_stquest = f.id_stquest
+AND f.id_typesoal = s.id_typesoal
 AND LEFT(s.ID_Main,1) = 'R'";
 $readingcheck = $conn->query($sqlreading);
 //Writing
 $sqlwriting = "SELECT s.soal_id as Nomor, a.answer as 'Your Answer', s.Answer_Key as 'Correct Answer', st.code as Subtopic, t.code as Topic , c.checking as Correction, s.id_diff as difficulty
-FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t
+FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t,  tbl_stquest f
 WHERE a.id_stquest='$idsoal'
 AND c.id_autoans = a.id_autoans
 AND a.id_answer = s.ID_Main
 AND s.id_sub_topic = st.id_sub_topic
 AND s.id_maintopic = t.id_topic
+AND a.id_stquest = f.id_stquest
+AND f.id_typesoal = s.id_typesoal
 AND LEFT(s.ID_Main,1) = 'W'";
 $writingcheck = $conn->query($sqlwriting);
 //Noncal
 $sqlnoncal = "SELECT s.soal_id as Nomor, a.answer as 'Your Answer', s.Answer_Key as 'Correct Answer', st.code as Subtopic, t.code as Topic , c.checking as Correction, s.id_diff as difficulty
-FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t
+FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t,  tbl_stquest f
 WHERE a.id_stquest='$idsoal'
 AND c.id_autoans = a.id_autoans
 AND a.id_answer = s.ID_Main
 AND s.id_sub_topic = st.id_sub_topic
 AND s.id_maintopic = t.id_topic
+AND a.id_stquest = f.id_stquest
+AND f.id_typesoal = s.id_typesoal
 AND LEFT(s.ID_Main,1) = 'N'";
 $noncalcheck = $conn->query($sqlnoncal);
 //Cal
 $sqlcal = "SELECT s.soal_id as Nomor, a.answer as 'Your Answer', s.Answer_Key as 'Correct Answer', st.code as Subtopic, t.code as Topic , c.checking as Correction, s.id_diff as difficulty
-FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t
+FROM tbl_check c,tbl_answer a, tbl_soal s, tbl_sub_topics st, tbl_topics t,  tbl_stquest f
 WHERE a.id_stquest='$idsoal'
 AND c.id_autoans = a.id_autoans
 AND a.id_answer = s.ID_Main
 AND s.id_sub_topic = st.id_sub_topic
 AND s.id_maintopic = t.id_topic
+AND a.id_stquest = f.id_stquest
+AND f.id_typesoal = s.id_typesoal
 AND LEFT(s.ID_Main,1) = 'M'";
-$calcheck = $conn->query($sqlcal);
 //Code-TOpic
 $sqlcodet = "SELECT  t.code as tcode, t.topic as topic
 FROM tbl_topics t

@@ -103,7 +103,7 @@
                 $post = "INSERT INTO tbl_student VALUES ('$newid','$mail','$name','$lname','$grade','$school','$pass')";
                     if ($conn->query($post) === TRUE) {
                         $status = "New record created successfully";
-                        echo "<script>document.location='./sign-in.php';</script>";
+                        echo "<script>document.location='./index.php';</script>";
                     } else {
                         $status = "Error: " . $post . "<br>" . $conn->error;
                     }
