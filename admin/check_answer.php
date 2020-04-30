@@ -172,7 +172,7 @@ if (empty($_SESSION['mail']))
                                     <tr><?php
                                     $id_stquest=$_GET['questions'];
                                     
-                                    $sql = "SELECT tbl_answer.answer,tbl_soal.Answer_Key FROM tbl_answer LEFT JOIN tbl_stquest ON tbl_answer.id_stquest=tbl_stquest.id_stquest INNER JOIN tbl_soal ON tbl_answer.id_answer=tbl_soal.ID_Main WHERE tbl_stquest.id_stquest='$id_stquest'";
+                                    $sql = "SELECT tbl_answer.answer,tbl_soal.Answer_Key FROM tbl_answer LEFT JOIN tbl_stquest ON tbl_answer.id_stquest=tbl_stquest.id_stquest INNER JOIN tbl_soal ON tbl_answer.id_answer=tbl_soal.ID_Main WHERE tbl_stquest.id_stquest='$id_stquest' AND tbl_stquest.id_typesoal=tbl_soal.id_typesoal";
                                     $result = $conn->query($sql);
                                     $no = 1;
                                     while($row = mysqli_fetch_assoc($result))
@@ -297,7 +297,7 @@ if (empty($_SESSION['mail']))
                                     </tr>
                                     <?php
                                                         } 
-                                                        elseif ($no>=117 && $no <155){
+                                                        elseif ($no>=117){
                                                             $cno = $no-116;
                                                     ?>
                                     <tr>
@@ -352,7 +352,7 @@ if (empty($_SESSION['mail']))
                             }
                         else{
 
-                        $sql = "SELECT tbl_answer.answer,id_autoans,tbl_soal.Answer_Key FROM tbl_answer LEFT JOIN tbl_stquest ON tbl_answer.id_stquest=tbl_stquest.id_stquest INNER JOIN tbl_soal ON tbl_answer.id_answer=tbl_soal.ID_Main WHERE tbl_stquest.id_stquest='$id_stquest'";
+                        $sql = "SELECT tbl_answer.answer,id_autoans,tbl_soal.Answer_Key FROM tbl_answer LEFT JOIN tbl_stquest ON tbl_answer.id_stquest=tbl_stquest.id_stquest INNER JOIN tbl_soal ON tbl_answer.id_answer=tbl_soal.ID_Main WHERE tbl_stquest.id_stquest='$id_stquest' AND tbl_stquest.id_typesoal=tbl_soal.id_typesoal";
                         $result = $conn->query($sql);
                         while($row = mysqli_fetch_assoc($result))
                         {            
@@ -378,17 +378,17 @@ if (empty($_SESSION['mail']))
                 {
                     $catname= $row['category_name'];
                     $catid = $row['id'];
-                    $catcorr = "SELECT COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c,tbl_topics d, tbl_categories e WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_maintopic = d.id_topic and d.id_category=e.id_category and a.checking='Correct' and e.id_category='$catid'";
+                    $catcorr = "SELECT COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_categories e, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_category=e.id_category and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and a.checking='Correct' and e.id_category='$catid'";
                     $resultz = mysqli_query($conn,$catcorr); 
                     $row = mysqli_fetch_assoc($resultz);
                     $correct = $row['correct'];
                     $sql = "INSERT INTO tbl_result_cat (id_result, id_category, correct_sum, Incorrect_sum) VALUES ('$newid','$catid','$correct','')";
                     $conn->query($sql);
-                    $catincorr = "SELECT COUNT(a.checking) as Incorrect FROM tbl_check a,tbl_answer b,tbl_soal c,tbl_topics d, tbl_categories e WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_maintopic = d.id_topic and d.id_category=e.id_category and a.checking='Incorrect' and e.id_category='$catid'";
+                    $catincorr = "SELECT COUNT(a.checking) as Incorrect FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_categories e, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_category=e.id_category and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and a.checking='Incorrect' and e.id_category='$catid'";
                     $resultzs = mysqli_query($conn,$catincorr); 
                     $rowz = mysqli_fetch_assoc($resultzs);
                     $incorrect = $rowz['Incorrect'];
-                    $sql2 = "UPDATE tbl_result_cat SET Incorrect_sum='$incorrect' WHERE id_category='$catid'";
+                    $sql2 = "UPDATE tbl_result_cat SET Incorrect_sum='$incorrect' WHERE id_category='$catid' and id_result='$newid'";
                     $conn->query($sql2);
                     $sqlscorer = "SELECT r.rsi_value as r FROM tbl_stquest stq, tbl_rsi_idname ri, tbl_rsi r WHERE stq.id_stquest='$id_stquest' AND stq.id_typesoal=ri.id_typesoal AND ri.rsi_idname=r.rsi_idname AND r.id_category='$catid' and r.rsi_numb='$correct'";
                     $t = $conn->query($sqlscorer);
@@ -437,13 +437,13 @@ if (empty($_SESSION['mail']))
                 while ($row = mysqli_fetch_assoc($result1))
                 {
                     $anlid = $row['id_anl'];
-                    $anlcorr = "SELECT d.anl,d.id_anl, COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_anl d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_anl=d.id_anl and a.checking = 'Correct' and d.id_anl='$anlid'";
+                    $anlcorr = "SELECT d.anl,d.id_anl, COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_anl d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_anl=d.id_anl and a.checking = 'Correct' and d.id_anl='$anlid'";
                     $correctanl = countresult($anlcorr,'correct');
                     $insanlcorr ="INSERT INTO tbl_result_anl (id_result,id_anl,correct_anl,incorrect_anls) VALUES ('$newid','$anlid','$correctanl','')";
                     $conn->query($insanlcorr);
-                    $anlincorr = "SELECT d.anl,d.id_anl, COUNT(a.checking) as incorrect FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_anl d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_anl=d.id_anl and a.checking = 'Incorrect' and d.id_anl='$anlid'";
-                    $incorrectanl = countresult($anlincorr,'incorrect');
-                    $sql3 = "UPDATE tbl_result_anl SET incorrect_anls='$incorrectanl' WHERE id_anl='$anlid'";
+                    $anlincorr = "SELECT d.anl,d.id_anl, COUNT(a.checking) as Incorrect FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_anl d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_anl=d.id_anl and a.checking = 'Incorrect' and d.id_anl='$anlid'";
+                    $incorrectanl = countresult($anlincorr,'Incorrect');
+                    $sql3 = "UPDATE tbl_result_anl SET incorrect_anls='$incorrectanl' WHERE id_anl='$anlid' and id_result='$newid'";
                     $conn->query($sql3);
                 }
                 //difficulty
@@ -452,13 +452,13 @@ if (empty($_SESSION['mail']))
                 while ($row = mysqli_fetch_assoc($rdiff))
                 {
                     $diffid = $row['diff'];
-                    $sqldiff = "SELECT d.diff, COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_diff d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_diff=d.id_diff and a.checking = 'Correct' and d.diff='$diffid'";
+                    $sqldiff = "SELECT d.diff, COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_diff d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_diff=d.id_diff and a.checking = 'Correct' and d.diff='$diffid'";
                     $correctdiff = countresult($sqldiff,'correct');
                     $insdiffcorr ="INSERT INTO tbl_result_dif (id_result,id_diff,correct_diff,incorrect_diff) VALUES ('$newid','$diffid','$correctdiff','')";
                     $conn->query($insdiffcorr);
-                    $sqlindiff = "SELECT d.diff, COUNT(a.checking) as incorrect FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_diff d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_diff=d.id_diff and a.checking = 'Incorrect' and d.diff='$diffid'";
-                    $incorrectdiff = countresult($sqlindiff,'incorrect');
-                    $sql4 = "UPDATE tbl_result_dif SET incorrect_diff='$incorrectdiff' WHERE id_diff='$diffid'";
+                    $sqlindiff = "SELECT d.diff, COUNT(a.checking) as Incorrect FROM tbl_check a,tbl_answer b,tbl_soal c, tbl_diff d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_diff=d.id_diff and a.checking = 'Incorrect' and d.diff='$diffid'";
+                    $incorrectdiff = countresult($sqlindiff,'Incorrect');
+                    $sql4 = "UPDATE tbl_result_dif SET incorrect_diff='$incorrectdiff' WHERE id_diff='$diffid' and id_result='$newid'";
                     $conn->query($sql4);
                 }
                 //topic
@@ -467,13 +467,13 @@ if (empty($_SESSION['mail']))
                 while ($rtopic = mysqli_fetch_assoc($rxyz))
                 {
                     $topicid = $rtopic['id_topic'];
-                    $sqltopic = "SELECT d.id_topic, COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c,tbl_topics d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_maintopic = d.id_topic and a.checking='Correct' and d.id_topic='$topicid'";
+                    $sqltopic = "SELECT d.id_topic, COUNT(a.checking) as correct FROM tbl_check a,tbl_answer b,tbl_soal c,tbl_topics d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_maintopic = d.id_topic and a.checking='Correct' and d.id_topic='$topicid'";
                     $correcttopic = countresult($sqltopic,'correct');
                     $instopiccorr ="INSERT INTO tbl_result_topic (id_result,id_topic,correct_topic,incorrect_topic) VALUES ('$newid','$topicid','$correcttopic','')";
                     $conn->query($instopiccorr);
-                    $sqltopicinc = "SELECT d.id_topic, COUNT(a.checking) as incorrect FROM tbl_check a,tbl_answer b,tbl_soal c,tbl_topics d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_maintopic = d.id_topic and a.checking='Incorrect' and d.id_topic='$topicid'";
-                    $incorrecttopic = countresult($sqltopicinc,'incorrect');
-                    $sql5 = "UPDATE tbl_result_topic SET incorrect_topic='$incorrecttopic' WHERE id_topic='$topicid'";
+                    $sqltopicinc = "SELECT d.id_topic, COUNT(a.checking) as Incorrect FROM tbl_check a,tbl_answer b,tbl_soal c,tbl_topics d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_maintopic = d.id_topic and a.checking='Incorrect' and d.id_topic='$topicid'";
+                    $incorrecttopic = countresult($sqltopicinc,'Incorrect');
+                    $sql5 = "UPDATE tbl_result_topic SET incorrect_topic='$incorrecttopic' WHERE id_topic='$topicid' and id_result='$newid'";
                     $conn->query($sql5);
                 }
                 //subtopic
@@ -482,13 +482,13 @@ if (empty($_SESSION['mail']))
                 while ($rsubtopic = mysqli_fetch_assoc($querysubtopic))
                 {
                     $subtopicid = $rsubtopic['id_sub_topic'];
-                    $sqlsubtopic = "SELECT d.id_sub_topic,sub_topic, COUNT(a.checking) as correct FROM tbl_check a, tbl_answer b, tbl_soal c, tbl_sub_topics d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_sub_topic=d.id_sub_topic and a.checking='Correct' and d.id_sub_topic='$subtopicid'";
+                    $sqlsubtopic = "SELECT d.id_sub_topic,sub_topic, COUNT(a.checking) as correct FROM tbl_check a, tbl_answer b, tbl_soal c, tbl_sub_topics d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_sub_topic=d.id_sub_topic and a.checking='Correct' and d.id_sub_topic='$subtopicid'";
                     $corrsubtopic = countresult($sqlsubtopic,'correct');
                     $inssubtopic ="INSERT INTO tbl_result_subtopic (id_result,id_sub_topic,correct_subtopic,incorrect_subtopic) VALUES ('$newid','$subtopicid','$corrsubtopic','')";
                     $conn->query($inssubtopic);
-                    $sqlsubinc = "SELECT d.id_sub_topic,sub_topic, COUNT(a.checking) as incorrect FROM tbl_check a, tbl_answer b, tbl_soal c, tbl_sub_topics d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_sub_topic=d.id_sub_topic and a.checking='Incorrect' and d.id_sub_topic='$subtopicid'";
-                    $incorrectsub = countresult($sqlsubinc,'incorrect');
-                    $sql6 = "UPDATE tbl_result_subtopic SET incorrect_subtopic='$incorrectsub' WHERE id_sub_topic='$subtopicid'";
+                    $sqlsubinc = "SELECT d.id_sub_topic,sub_topic, COUNT(a.checking) as Incorrect FROM tbl_check a, tbl_answer b, tbl_soal c, tbl_sub_topics d, tbl_stquest f WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and b.id_stquest = f.id_stquest and f.id_typesoal = c.id_typesoal and c.id_sub_topic=d.id_sub_topic and a.checking='Incorrect' and d.id_sub_topic='$subtopicid'";
+                    $incorrectsub = countresult($sqlsubinc,'Incorrect');
+                    $sql6 = "UPDATE tbl_result_subtopic SET incorrect_subtopic='$incorrectsub' WHERE id_sub_topic='$subtopicid' and id_result='$newid'";
                     $conn->query($sql6);
                 }
                         if ($x = 1)
