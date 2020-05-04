@@ -75,13 +75,13 @@
 
 <body onload="printer()">
     <?php
-    session_start();
+    include('printdata.php');
     if (empty($_SESSION['mail']))
     {
         echo "<script type='text/javascript'>alert('Please log-in first!')</script>";
         echo "<script>document.location='../';</script>";
     }
-    include('printdata.php');
+    
     ?>
     <div class="container center">
         <center><img src="../images/logo.png"  width="250" height="50">

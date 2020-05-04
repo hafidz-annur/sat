@@ -5,7 +5,6 @@ session_start();
 if (isset($_SESSION['mail']))
 {
 
-
 $mail = $_SESSION['mail'];
 $sqlmail = "SELECT * FROM tbl_student WHERE st_mail='$mail'";
 $sqlmail2 = $conn->query($sqlmail);

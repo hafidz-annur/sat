@@ -2,6 +2,7 @@
 <?php 
 include("connect.php"); 
 include("functions.php");
+session_start();
 $id_result = $_SESSION['id_result'];
 $sql = "SELECT st.st_name as nama_siswa, st_grade as grade, q.nama_soal as jenis_soal, stq.id_stquest as id_soal, sc.school as nama_sekolah
 FROM tbl_result r, tbl_stquest stq, tbl_student st, tbl_typesoal q, tbl_school sc
@@ -381,8 +382,10 @@ $qcnoncal = $conn->query($cnoncal);
 while ($noncalsqli = mysqli_fetch_assoc($qcnoncal))
         {
             $sqlcountnoncal = "SELECT COUNT(soal_id) as total
-            FROM `tbl_soal`
-            WHERE LEFT(ID_Main,1)='N'";
+            FROM tbl_soal a, tbl_stquest b
+            WHERE LEFT(a.ID_Main,1)='N'
+            AND b.id_stquest = '$idsoal'
+            AND b.id_typesoal = a.id_typesoal";
             $sqlcountnoncalq = $conn->query($sqlcountnoncal);
             $sqlcountnoncaln = mysqli_fetch_assoc($sqlcountnoncalq);
             $totalcountnoncal = $sqlcountnoncaln['total'];
@@ -400,8 +403,10 @@ $qccal = $conn->query($ccal);
 while ($calsqli = mysqli_fetch_assoc($qccal))
         {   
             $sqlcountcal = "SELECT COUNT(soal_id) as total
-            FROM `tbl_soal`
-            WHERE LEFT(ID_Main,1)='M'";
+            FROM tbl_soal a, tbl_stquest b
+            WHERE LEFT(a.ID_Main,1)='M'
+            AND b.id_stquest = '$idsoal'
+            AND b.id_typesoal = a.id_typesoal";
             $sqlcountcalq = $conn->query($sqlcountcal);
             $sqlcountcaln = mysqli_fetch_assoc($sqlcountcalq);
             $totalcountcal = $sqlcountcaln['total'];

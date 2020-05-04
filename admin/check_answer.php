@@ -297,7 +297,7 @@ if (empty($_SESSION['mail']))
                                     </tr>
                                     <?php
                                                         } 
-                                                        elseif ($no>=117){
+                                                        elseif ($no>=117 && $no<155){
                                                             $cno = $no-116;
                                                     ?>
                                     <tr>
@@ -477,7 +477,7 @@ if (empty($_SESSION['mail']))
                     $conn->query($sql5);
                 }
                 //subtopic
-                $subtopicselect = "SELECT d.id_sub_topic,sub_topic FROM tbl_check a, tbl_answer b, tbl_soal c, tbl_sub_topics d WHERE b.id_stquest='$id_stquest' and a.id_autoans = b.id_autoans and b.id_answer = c.ID_Main and c.id_sub_topic=d.id_sub_topic GROUP BY d.sub_topic";
+                $subtopicselect = "SELECT d.id_sub_topic,sub_topic FROM  tbl_soal c, tbl_sub_topics d, tbl_stquest f WHERE f.id_stquest='$id_stquest' and f.id_typesoal=c.id_typesoal and c.id_sub_topic=d.id_sub_topic GROUP BY d.id_sub_topic";
                 $querysubtopic = mysqli_query($conn,$subtopicselect);
                 while ($rsubtopic = mysqli_fetch_assoc($querysubtopic))
                 {
