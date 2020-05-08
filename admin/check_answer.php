@@ -48,6 +48,9 @@ if (empty($_SESSION['mail']))
       <a class="nav-link" href="student_insert.php">Students</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="check_answer.php">Check Answer</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="school_insert.php">School</a>
     </li>
     <li class="nav-item">

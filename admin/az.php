@@ -36,12 +36,46 @@ $id_result = $_POST['id_result'];
 </head>
 
 <body>
-    <center><img src="../images/logo.png"  width="250" height="50">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="index.php">
+    <img src="../images/logo.png" alt="logo" style="width:40px;">
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="student_insert.php">Students</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="check_answer.php">Check Answer</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="school_insert.php">School</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="question_insert.php">Questions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="rsi_insert.php">R S I</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="key.php">Key</a>
+    </li>
+  </ul>
+  
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="../sign-out.php">Logout</a>
+    </li>
+  </ul>
+</nav>
+<center>
         <div class="container">
             <h3 class=" text-white m-0 mb-3" style="background: #4CAF50"> Analyze Details <?=$id_result?></h3>
             <div class="row">
                 <div class="col-md-12 center">
-                    <form action="analysis_view2.php" method="post" align="center">
+                    <form action="" method="post" align="center">
                     <input type="hidden" name="id_result" value="<?=$id_result?>">
                         <h5 class="bg-secondary text-white m-0 "> Category</h5>
                         <table name="category" class="table table-sm table-hover" border="1" cellpadding="0">
@@ -193,7 +227,7 @@ $id_result = $_POST['id_result'];
                                 <?php } ?>
                             </tr>
                         </table>
-                        <button class="btn btn-primary" type="submit" name="report">Report</button>
+                        <a class="btn btn-primary" target="_blank" href='analysis_view2.php' name='report'>Report</a>
                     </form>
                 </div>
             </div>

@@ -41,7 +41,41 @@ $_SESSION['id_result'] = $id_result;
 </head>
 
 <body>
-    <center><img src="../images/logo.png"  width="250" height="50">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="index.php">
+    <img src="../images/logo.png" alt="logo" style="width:40px;">
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="student_insert.php">Students</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="check_answer.php">Check Answer</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="school_insert.php">School</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="question_insert.php">Questions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="rsi_insert.php">R S I</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="key.php">Key</a>
+    </li>
+  </ul>
+  
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="../sign-out.php">Logout</a>
+    </li>
+  </ul>
+</nav>
+<center>
         <div class="container">
             <h3 class=" text-white m-0 mb-3" style="background: #4CAF50"> Analyze <?=$id_stquest?></h3>
             <div class="row">
