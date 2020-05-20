@@ -8,11 +8,9 @@ if (empty($_SESSION['mail']))
     echo "<script>document.location='../';</script>";
 }
 
+
+$id_stquest = $_SESSION['stquestid'];
 $id_result = $_GET['id_result'];
-$sql = "SELECT DISTINCT id_stquest FROM tbl_result r WHERE r.id_result='$id_result'";
-$x = $conn->query($sql);
-$y = mysqli_fetch_assoc($x);
-$id_stquest = $y['id_stquest'];
 $_SESSION['id_result'] = $id_result;
 ?>
 

@@ -10,10 +10,8 @@ if (empty($_SESSION['mail']))
 $idstudent  = $_SESSION['st_id'];
 $stname = $_SESSION['st_name'];
 $quest_id = $_SESSION['tipetest'];
-$sql = "SELECT a.id_stquest FROM tbl_stquest a WHERE a.id_student='$idstudent' and a.id_typesoal='$quest_id'";
-$qkey = mysqli_query($conn,$sql);
-$rowkey  = mysqli_fetch_array($qkey);
-$id_stquest = $rowkey['id_stquest'];
+$id_stquest = $_SESSION['stquestid'];
+$quest_name = $_SESSION['quest_name'];
 // $answer = $_POST['ans_id'];
 ?>
 

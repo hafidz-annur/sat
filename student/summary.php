@@ -33,6 +33,7 @@
 
 <body onload="printer()">
     <?php
+    
     // if (empty($_SESSION['mail']))
     // {
     //     echo "<script type='text/javascript'>alert('Please log-in first!')</script>";

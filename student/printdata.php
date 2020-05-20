@@ -25,6 +25,10 @@ while($x = mysqli_fetch_assoc($y))
     $school = $x['nama_sekolah'];
     $idsoal= $x['id_soal'];
 }
+$idsoal = $_SESSION['stquestid'];
+$questionanme = $_SESSION['quest_name'];
+$studentname = $_SESSION['st_name'];
+$studentgrade = $_SESSION['st_grade'];
 //score
 $conver ="SELECT s.score_description as Section,rs.score_value as Score, s.id_score as id FROM tbl_result_score rs, tbl_score s WHERE rs.id_result='$id_result' and s.id_score=rs.id_score";
 $t = $conn->query($conver);
