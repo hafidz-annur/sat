@@ -25,9 +25,9 @@ session_start();
         $sql="INSERT INTO tbl_answer (id_answer, id_stquest, answer) 
         VALUES ('$id','$stquestid','$wl[$i]') ";
         $x = $conn->query($sql); 
-        echo $id." ".$wl[$i]."<br>";
+        // echo $id." ".$wl[$i]."<br>";
     }
-    // echo "<script>document.location='./test-noncal.php';</script>";
+    echo "<script>document.location='./test-noncal.php';</script>";
 
 ?>
-<a href="./test-noncal.php">Non Calculator session</a>
+<!-- <a href="./test-noncal.php">Non Calculator session</a> -->

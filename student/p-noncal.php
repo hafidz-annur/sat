@@ -15,7 +15,7 @@ session_start();
     for($i=0;$i<15;$i++){
         $o = $i + 1;
         $id = 'N'. $o;
-        // reading
+        // noncal
         if(isset($_POST['nc'.$i])){
             $nc[$i] = $_POST['nc'.$i];
         } else {
@@ -25,7 +25,7 @@ session_start();
         $sql="INSERT INTO tbl_answer (id_answer, id_stquest, answer) 
         VALUES ('$id','$stquestid','$nc[$i]') ";
         $x = $conn->query($sql); 
-        echo $id." ".$nc[$i]."<br>";
+        // echo $id." ".$nc[$i]."<br>";
     }
     for($i=15;$i<20;$i++)
     {
@@ -57,9 +57,9 @@ session_start();
         $sql="INSERT INTO tbl_answer (id_answer, id_stquest, answer) 
         VALUES ('$id','$stquestid','$nc[$i]') ";
         $x = $conn->query($sql); 
-        echo $id." ".$nc[$i]."<br>";
+        // echo $id." ".$nc[$i]."<br>";
     }
-    // echo "<script>document.location='./test-cal.php';</script>";
+    echo "<script>document.location='./test-cal.php';</script>";
 
 ?>
-<a href="./test-cal.php">Calculator session</a>
+<!-- <a href="./test-cal.php">Calculator session</a> -->

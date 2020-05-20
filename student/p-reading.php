@@ -23,9 +23,9 @@ session_start();
         $sql="INSERT INTO tbl_answer (id_answer, id_stquest, answer) 
         VALUES ('$id','$stquestid','$r[$i]') ";
         $x = $conn->query($sql); 
-        echo $id." ".$r[$i]."<br>";
+        // echo $id." ".$r[$i]."<br>";
     }
-    // echo "<script>document.location='./test-writing.php';</script>";
+    echo "<script>document.location='./test-writing.php';</script>";
 
 ?>
-<a href="./test-writing.php">Writing session</a>
+<!-- <a href="./test-writing.php">Writing session</a> -->

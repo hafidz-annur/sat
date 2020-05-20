@@ -23,7 +23,7 @@ for($i=0;$i<30;$i++){
     $sql="INSERT INTO tbl_answer (id_answer, id_stquest, answer) 
     VALUES ('$id','$stquestid','$c[$i]') ";
     $x = $conn->query($sql); 
-    echo $id." ".$c[$i]."<br>";
+    // echo $id." ".$c[$i]."<br>";
     }
 for($i=30;$i<38;$i++){
     $o = $i + 1;
@@ -52,14 +52,14 @@ for($i=30;$i<38;$i++){
         }
         else{
             $c[$i] = $oa.$ob.$oc.$od;
-            
+
         }
     }
     $sql="INSERT INTO tbl_answer (id_answer, id_stquest, answer) 
     VALUES ('$id','$stquestid','$c[$i]') ";
     $x = $conn->query($sql); 
-    echo $id." ".$c[$i]."<br>";
+    // echo $id." ".$c[$i]."<br>";
     }
-    // <script>document.location='./test-noncal.php';</script>";
+    echo  "<script>document.location='./check_answer-student.php';</script>";
 ?>
-<a href="./check_answer-student.php">Check answer</a>
+<!-- <a href="./check_answer-student.php">Check answer</a> -->
